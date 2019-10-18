@@ -7,7 +7,7 @@ import SearchForm from './SearchForm';
 
 //dummy data file to use to avoid triggering the API limit
 //Comment out in final version
-import dataFromFile from './data';
+// import dataFromFile from './data';
 
 
 const MyH2Chr = styled.h2`
@@ -24,6 +24,7 @@ const CardDivChrList = styled.div`
 
 
 export default function CharacterList() {
+  
   // TODO: Add useState to track data from useEffect
   const [srvData, setSrvData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -31,28 +32,28 @@ export default function CharacterList() {
 
   
 
-  // useEffect(() => {
-  //   // TODO: Add API Request here - must run in `useEffect`
-  //   //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
-  //   axios
-  //       .get('https://rickandmortyapi.com/api/character/')
-  //       .then(response => {
-  //         console.log("From srv:",response.data.results);
-  //         setSrvData(response.data.results);
+  useEffect(() => {
+    // TODO: Add API Request here - must run in `useEffect`
+    //  Important: verify the 2nd `useEffect` parameter: the dependancies array!
+    axios
+        .get('https://rickandmortyapi.com/api/character/')
+        .then(response => {
+          console.log("From srv:",response.data.results);
+          setSrvData(response.data.results);
           
-  //       })
-  //       .catch(error => {
-  //         console.error('Server Error', error);
-  //       });
-  // }, []);
+        })
+        .catch(error => {
+          console.error('Server Error', error);
+        });
+  }, []);
 
 
 
   //Dummy code to use to avoid triggering the API limit
   //Comment out in final version
-  useEffect(() => {    
-    setSrvData(dataFromFile.results);
-  }, []);
+  // useEffect(() => {    
+  //   setSrvData(dataFromFile.results);
+  // }, []);
 
 
   useEffect(() => {
@@ -86,9 +87,6 @@ export default function CharacterList() {
           />
         )}
       </CardDivChrList>
-
-      
-
     </section>
   );
 }

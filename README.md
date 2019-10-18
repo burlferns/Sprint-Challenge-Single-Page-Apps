@@ -27,7 +27,7 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ]  Explain benefit(s) using `client-side routing`?
 
-> Answer:
+> Answer: Client side routing does not go out to the server on the internet to get aditional data (in the form of HTML, CSS or JavaScript files) when navigating different parts of an internet site. The DOM for the additional web pages is created on the client machine itself using data that the client machine got when it first visited the website. 
 
 ## Project Set Up
 
