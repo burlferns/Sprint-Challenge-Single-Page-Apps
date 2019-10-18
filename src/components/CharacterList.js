@@ -3,7 +3,12 @@ import axios from 'axios';
 import styled from "styled-components";
 
 import CharacterCard from './CharacterCard';
-import data from './data';
+import SearchForm from './SearchForm';
+
+//dummy data file to use to avoid triggering the API limit
+//Comment out in final version
+import dataFromFile from './data';
+
 
 const MyH2Chr = styled.h2`
   // border:1px solid grey;
@@ -18,13 +23,12 @@ const CardDivChrList = styled.div`
 `;
 
 
-
-
 export default function CharacterList() {
   // TODO: Add useState to track data from useEffect
-  // const [srvData, setSrvData] = useState([]);
-  const [srvData, setSrvData] = useState(data.results);
+  const [srvData, setSrvData] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
+  
 
   // useEffect(() => {
   //   // TODO: Add API Request here - must run in `useEffect`
@@ -41,12 +45,22 @@ export default function CharacterList() {
   //       });
   // }, []);
 
-  console.log("From data file:",srvData);
+
+
+  //Dummy code to use to avoid triggering the API limit
+  //Comment out in final version
+  useEffect(() => {    
+    setSrvData(dataFromFile.results);
+  }, []);
+
+  
 
   return (
     <section className="character-list">
       {/* <h2>TODO: `array.map()` over your state here!</h2> */}
       <MyH2Chr>Character Information</MyH2Chr>
+
+      <SearchForm/>
 
       <CardDivChrList>
         {srvData.map( (elem) => 
@@ -59,25 +73,7 @@ export default function CharacterList() {
         )}
       </CardDivChrList>
 
-      {/* {srvData.map( (elem) => 
-        <CharacterCard key={elem.id}
-        name={elem.name}
-        status={elem.status} 
-        species={elem.species}
-        type={elem.type}
-        />
-      )} */}
-
-
-
-
-
-      {/* <CharacterCard 
-        name={srvData[0].name}
-        status={srvData[0].status} 
-        species={srvData[0].species}
-        type={srvData[0].type}
-      /> */}
+      
 
     </section>
   );
