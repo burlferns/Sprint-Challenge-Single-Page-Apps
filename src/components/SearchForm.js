@@ -18,7 +18,7 @@ const MyInpSrcFrm =  styled.input`
 `;
 
 
-export default function SearchForm() {
+export default function SearchForm({searchTerm,handleChange}) {
  
   return (
     <MySecSrcFrm className="search-form">
@@ -28,8 +28,8 @@ export default function SearchForm() {
         type="text"
         placeholder="Search"
         name="name"
-        // value={searchTerm}
-        // onChange={handleChange}
+        value={searchTerm}
+        onChange={handleChange}
       />
 
 

@@ -26,6 +26,7 @@ const CardDivChrList = styled.div`
 export default function CharacterList() {
   // TODO: Add useState to track data from useEffect
   const [srvData, setSrvData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
   
@@ -53,17 +54,30 @@ export default function CharacterList() {
     setSrvData(dataFromFile.results);
   }, []);
 
+
+  useEffect(() => {
+    const results = srvData.filter(personData =>
+      personData.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setSearchResults(results);
+  }, [searchTerm,srvData]);
   
+  const handleChange = event => {
+    setSearchTerm(event.target.value);
+  };
 
   return (
     <section className="character-list">
       {/* <h2>TODO: `array.map()` over your state here!</h2> */}
       <MyH2Chr>Character Information</MyH2Chr>
 
-      <SearchForm/>
+      <SearchForm
+        handleChange={handleChange}
+        searchTerm={searchTerm}
+      />
 
       <CardDivChrList>
-        {srvData.map( (elem) => 
+        {searchResults.map( (elem) => 
           <CharacterCard key={elem.id}
           name={elem.name}
           status={elem.status} 
